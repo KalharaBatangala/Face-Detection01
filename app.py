@@ -37,3 +37,13 @@ if uploaded_file is not None:
 
     # Display the count of detected faces
     st.write(f"Number of people detected: **{len(faces)}**")
+
+    # Add download button for the processed image
+    buffered = io.BytesIO()
+    result_image.save(buffered, format="PNG")
+    st.download_button(
+        label="Download Processed Image",
+        data=buffered.getvalue(),
+        file_name="processed_image.png",
+        mime="image/png"
+    )
